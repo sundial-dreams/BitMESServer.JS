@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    #gantt-chart {
+        width: 60rem;
+        height: 40rem;
+    }
+    
+
+    .chart {
+        position: relative;
+        display: inline-block;
+        width: 40rem;
+        height: 40rem;
+        vertical-align: top;
+    }
+
+    .block {
+        position: absolute;
+        display: inline-block;
+    }
+
+    .machine {
+        display: inline-block;
+        width: 8rem;
+        color: gray;
+        font-weight: bold;
+        vertical-align: top;
+
+    }
+
+    .machine > .label {
+
+    }
+
+    .legend {
+        width: 8rem;
+        color: gray;
+        font-weight: bold;
+        display: inline-block;
+        vertical-align: top;
+
+    }
+
+    .legend-block {
+        width: 8rem;
+    }
+
+    .color {
+        width: 1rem;
+        height: 1rem;
+        display: inline-block;
+    }
+
+    .text {
+        width: 4rem;
+        display: inline-block;
+        color: gray;
+        font-weight: bold;
+    }
+</style>
+<body>
+<div id="gantt-chart">
+    <div class="machine">
+
+    </div>
+    <div class="chart">
+
+    </div>
+    <div class="legend">
+
+    </div>
+</div>
+</body>
+<script>
+  void function () {
+    function createEle (tag, options) {
+      var el = document.createElement(tag);
+      for (var k in options) {
+        if (options.hasOwnProperty(k)) {
+          el[k] = options[k]
+        }
+      }
+      return el
+    }
+
+    function setStyle (el, cssObject) {
+      for (var k in cssObject) {
+        if (cssObject.hasOwnProperty(k)) {
+          el.style[k] = cssObject[k]
+        }
+      }
+    }
+
+    var chart = document.querySelector(".chart");
+    var legend = document.querySelector(".legend");
+    var machine = document.querySelector(".machine");
+
+    var data = {
+      0: [{ 'job': 0, 'process': 0, 'startTime': 2, 'endTime': 5 },
+        { 'job': 1, 'process': 0, 'startTime': 0, 'endTime': 2 }],
+      1: [{ 'job': 0, 'process': 1, 'startTime': 5, 'endTime': 7 },
+        { 'job': 1, 'process': 2, 'startTime': 7, 'endTime': 11 },
+        { 'job': 2, 'process': 0, 'startTime': 0, 'endTime': 4 }],
+      2: [{ 'job': 0, 'process': 2, 'startTime': 7, 'endTime': 9 },
+        { 'job': 1, 'process': 1, 'startTime': 2, 'endTime': 3 },
+        { 'job': 2, 'process': 1, 'startTime': 4, 'endTime': 7 }]
+    }
+    var colors = [
+      "#4bb5ef",
+      "#bb3dff",
+      "#ff4c5f",
+      "#fffa51",
+      "#4dff2b",
+      "#ff9409",
+      "#ff78b7",
+      "#74ffff",
+    ];
+    var height = 3;
+    var width = 3;
+    var jobLegend = {};
+    for (var k in data) {
+      var label = createEle("div", { innerText: "machine" + k, className: "label" });
+      setStyle(label, { height: height + "rem", lineHeight: height + "rem" });
+      machine.appendChild(label);
+      for (var i = 0; i < data[k].length; i ++) {
+        var value = data[k][i];
+        var block = createEle("div", { className: "block" });
+        setStyle(block, {
+          height: height + "rem",
+          width: (value.endTime - value.startTime) * width + "rem",
+          left: value.startTime * width + "rem",
+          top: k * height + "rem",
+          backgroundColor: colors[value.job]
+        });
+        jobLegend[value.job] = colors[value.job];
+        chart.appendChild(block);
+      }
+    }
+    for (k in jobLegend) {
+      var legendBlock = "<div class=\"legend-block\" style='height: " + height + "rem;line-height: " + height + "rem'>\n" +
+        "                     <div class=\"color\" style='background: " + jobLegend[k] + "'></div>\n" +
+        "                     <div class=\"text\">job" + k + "</div>\n" +
+        "                </div>";
+
+      legend.innerHTML += legendBlock;
+    }
+
+  }();
+</script>
+</html>

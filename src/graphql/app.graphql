@@ -1,0 +1,173 @@
+type UserType {
+    id: ID!
+    email: String!
+    password: String!
+    avatar: String!
+    role: String!
+    name: String!
+    sex: String!
+    age: Int!
+}
+
+type MachineType {
+    id: ID!
+    name: String!
+    description: String!
+    workTime: Int!
+    idleTime: Int!
+    maintainTime: Int!
+    brokenTime: Int!
+    currentState: String!
+    runAt: String!
+    cost: Float!
+    chargeOf: String!
+}
+
+type StaffType {
+    id: ID!
+    name: String!
+    sex: String!
+    age: Int!
+    joinTime: String!
+    workTime: String!
+    position: String!
+    salary: Float!
+    description: String!
+}
+
+type WorkPieceType {
+    id: ID!
+    name: String!
+    description: String
+    price: Float!
+    processTotalTime: Float!
+    deliveryDate: String!
+}
+type ProcessType {
+    id: ID!
+    name: String!
+    description: String!
+    workpiece: String!
+    machine: String!
+    chargeOf: String!
+    time: Float!
+}
+interface IError {
+    err: Boolean!
+    msg: String
+}
+type UserResponseType implements IError{
+    err: Boolean!
+    msg: String
+    avatar: String
+}
+type MachineResponseType implements IError {
+    err: Boolean!
+    msg: String
+    machine: MachineType
+}
+
+type WorkpieceResponseType implements IError {
+    err: Boolean!
+    msg: String
+    workpiece: WorkPieceType
+}
+type ProcessResponseType implements IError {
+    err: Boolean!
+    msg: String
+    process: ProcessType
+}
+type ErrorType implements IError {
+    err: Boolean!
+    msg: String
+}
+
+type ScheduleHistoryType {
+    id: ID!
+    time: String!
+}
+
+type Query {
+    queryUser(id: ID): [UserType]
+    verifyEmail(email: String!): IError
+    verifyPassword(email: String!, password: String!): IError
+
+    queryStaffByName(name: String!): [StaffType]
+
+    queryMachine(id: ID): [MachineType]
+    queryMachineByName(name: String!): [MachineType]
+
+    queryWorkpiece(id: ID): [WorkPieceType]
+    queryWorkpieceByName(name: String): [WorkPieceType]
+
+    queryProcess(id: ID): [ProcessType]
+    queryProcessByName(name: String!): [ProcessType]
+
+    queryScheduleHistory: [ScheduleHistoryType]
+
+    queryScheduleResult(id: ID): ScheduledResultType
+
+}
+input InputMachine {
+    name: String
+    state: String
+    chargeOf: String
+    description: String
+}
+input InputWorkpiece {
+    name: String
+    description: String
+    price: Float
+    processTotalTime: Float
+    deliveryDate: String
+}
+input InputProcess {
+    name: String
+    description: String
+    workpiece: String
+    machine: String
+    chargeOf: String
+    time: Float
+}
+type ResultType {
+    workpiece: String!
+    process: String!
+    machine: String!
+    startTime: Float!
+    endTime: Float!
+}
+type ScheduledResultType {
+    fulfillTime: Float!
+    result: [ResultType]
+}
+input ScheduledParameter {
+    workpiece: String!
+    process: String!
+    machine: String!
+    time: Float!
+    order: Int!
+}
+input InputScheduledParameter {
+    parameter: [ScheduledParameter]
+}
+type Mutation {
+    createMachine(machine: InputMachine!): IError
+    deleteMachine(id: ID!): IError
+    modifyMachine(id: ID!, machine: InputMachine!): IError
+
+    createWorkpiece(workpiece: InputWorkpiece!): IError
+    deleteWorkpiece(id: ID!): IError
+    modifyWorkpiece(id: ID!, workpiece: InputWorkpiece!): IError
+
+    createProcess(process: InputProcess): IError
+    deleteProcess(id: ID!): IError
+    modifyProcess(id: ID!): IError
+
+    useSchedule(param: InputScheduledParameter): ScheduledResultType
+
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}
