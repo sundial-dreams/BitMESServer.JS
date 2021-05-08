@@ -20,7 +20,7 @@
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.0",
     "type-graphql": "^0.17.4",
-    "typeorm": "^0.2.18"
+    "typeorm": "^0.2.25"
   },
   "scripts": {
     "dev": "ts-node src/index.ts",
