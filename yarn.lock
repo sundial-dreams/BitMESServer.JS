@@ -148,6 +148,11 @@
   resolved "https://registry.npm.taobao.org/@types/tough-cookie/download/@types/tough-cookie-2.3.5.tgz#9da44ed75571999b65c37b60c9b2b88db54c585d"
   integrity sha1-naRO11VxmZtlw3tgybK4jbVMWF0=
 
+"@types/validator@^13.7.10":
+  version "13.7.10"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.7.10.tgz#f9763dc0933f8324920afa9c0790308eedf55ca7"
+  integrity sha512-t1yxFAR2n0+VO6hd/FJ9F2uezAZVWHLmpmlJzm1eX03+H7+HsuTAp7L8QJs+2pQCfWkP1+EXsGK9Z9v7o/qPVQ==
+
 accepts@^1.3.5, accepts@~1.3.7:
   version "1.3.7"
   resolved "https://registry.npm.taobao.org/accepts/download/accepts-1.3.7.tgz#531bc726517a3b2b41f850021c6cc15eaab507cd"
@@ -332,12 +337,13 @@ chalk@^2.3.0, chalk@^2.4.2:
     supports-color "^5.3.0"
 
 class-validator@>=0.9.1:
-  version "0.9.1"
-  resolved "https://registry.npm.taobao.org/class-validator/download/class-validator-0.9.1.tgz#d60e58c5d14abca0a41bce38cf792ad4c46d1531"
-  integrity sha1-1g5YxdFKvKCkG844z3kq1MRtFTE=
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.14.0.tgz#40ed0ecf3c83b2a8a6a320f4edb607be0f0df159"
+  integrity sha512-ct3ltplN8I9fOwUd8GrP8UQixwff129BkEtuWDKL5W45cQuLd19xqmTLu5ge78YDm/fdje6FMt0hGOhl0lii3A==
   dependencies:
-    google-libphonenumber "^3.1.6"
-    validator "10.4.0"
+    "@types/validator" "^13.7.10"
+    libphonenumber-js "^1.10.14"
+    validator "^13.7.0"
 
 cli-highlight@^2.0.0:
   version "2.1.1"
@@ -696,11 +702,6 @@ glob@^7.1.2, glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-google-libphonenumber@^3.1.6:
-  version "3.2.3"
-  resolved "https://registry.npm.taobao.org/google-libphonenumber/download/google-libphonenumber-3.2.3.tgz#5e5c138c81b8734ebbe5ed354f6cdd22e1b53e95"
-  integrity sha1-XlwTjIG4c0675e01T2zdIuG1PpU=
-
 graphql-query-complexity@^0.2.3:
   version "0.2.3"
   resolved "https://registry.npm.taobao.org/graphql-query-complexity/download/graphql-query-complexity-0.2.3.tgz#ca26790fd5d22cb3d4ca8f43d19605929d8cf27f"
@@ -917,6 +918,11 @@ lcid@^2.0.0:
   integrity sha1-bvXS32DlL4LrIopMNz6NHzlyU88=
   dependencies:
     invert-kv "^2.0.0"
+
+libphonenumber-js@^1.10.14:
+  version "1.10.18"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.18.tgz#657c419071c8a02c638c0e80d9ee1232f152f280"
+  integrity sha512-NS4ZEgNhwbcPz1gfSXCGFnQm0xEiyTSPRthIuWytDzOiEG9xnZ2FbLyfJC4tI2BMAAXpoWbNxHYH75pa3Dq9og==
 
 locate-path@^3.0.0:
   version "3.0.0"
@@ -1646,10 +1652,10 @@ uuid@^3.3.2:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
 
-validator@10.4.0:
-  version "10.4.0"
-  resolved "https://registry.npm.taobao.org/validator/download/validator-10.4.0.tgz#ee99a44afb3bb5ed350a159f056ca72a204cfc3c"
-  integrity sha1-7pmkSvs7te01ChWfBWynKiBM/Dw=
+validator@^13.7.0:
+  version "13.7.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.7.0.tgz#4f9658ba13ba8f3d82ee881d3516489ea85c0857"
+  integrity sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==
 
 vary@~1.1.2:
   version "1.1.2"
